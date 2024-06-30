@@ -1,73 +1,116 @@
+/* styles.css */
+
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    text-align: center; /* Center all text by default */
 }
 
 header {
-    background: #333;
+    background-color: #076df3;
     color: #fff;
-    padding: 1em 0;
+    padding: 1rem;
     text-align: center;
 }
 
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
 nav ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
+    text-align: center; /* Center navigation items */
 }
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin-right: 1rem;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 main {
-    padding: 20px;
+    padding: 2rem;
 }
 
-section {
-    margin: 20px 0;
+#greetingMessage {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 footer {
-    background: #333;
+    background-color: #076df3;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem;
     position: fixed;
-    width: 100%;
     bottom: 0;
+    width: 100%;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+/* Section styles */
+section {
+    margin-bottom: 2rem;
+    text-align: left; /* Align text to the left within the section */
+    max-width: 800px; /* Maximum width of content */
+    margin-left: auto; /* Center align */
+    margin-right: auto; /* Center align */
+    border: 1px solid #ddd; /* Optional: border for visual separation */
+    padding: 20px; /* Optional: padding for content */
+    background-color: #f9f9f9; /* Optional: background color for sections */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: shadow for visual depth */
 }
 
-form label {
-    margin-top: 10px;
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center; /* Center align section headers */
 }
 
-form input, form textarea {
-    padding: 10px;
-    margin-top: 5px;
+section h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+section p {
+    margin-bottom: 1rem;
 }
 
-form button:hover {
-    background: #555;
+/* Image styles */
+.profile-image {
+    width: 150px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make the image circular */
+    display: block; /* Ensures proper block display */
+    margin: 0 auto 20px; /* Center align and add margin */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    section h2 {
+        font-size: 1.8rem;
+    }
+    
+    section h3 {
+        font-size: 1.3rem;
+    }
 }
