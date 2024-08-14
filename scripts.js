@@ -54,5 +54,22 @@ document.addEventListener("DOMContentLoaded", function() {
             scrollToTop();
         });
     }
+
+    const contactForm = document.getElementById("contactForm");
+    if (contactForm) {
+        contactForm.addEventListener("submit", function(event) {
+            // Basic validation
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("mail").value.trim();
+            const message = document.getElementById("msg").value.trim();
+
+            if (name === "" || email === "" || message === "") {
+                alert("All fields are required.");
+                event.preventDefault(); // Prevent form submission
+            } else {
+                // Optionally, you can add more validation or processing here
+            }
+        });
+    }
 });
 

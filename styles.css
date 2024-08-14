@@ -95,7 +95,7 @@ section p {
 .profile-image {
     width: 150px; /* Adjust size as needed */
     height: auto; /* Maintain aspect ratio */
-    border-radius: 50%; /* Make the image circular */
+    border-radius: 70%; /* Make the image circular */
     display: block; /* Ensures proper block display */
     margin: 0 auto 20px; /* Center align and add margin */
 }
