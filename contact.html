@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            /* Center the form on the page */
             text-align: center;
         }
 
         form {
             display: inline-block;
-            /* Form outline */
             padding: 1em;
             border: 1px solid #ccc;
             border-radius: 1em;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
         }
 
         ul {
@@ -30,7 +36,6 @@
         }
 
         label {
-            /* Uniform size & alignment */
             display: inline-block;
             min-width: 90px;
             text-align: right;
@@ -38,39 +43,29 @@
 
         input,
         textarea {
-            /* To make sure that all text fields have the same font settings */
             font: 1em sans-serif;
-            /* Uniform text field size */
             width: 300px;
             box-sizing: border-box;
-            /* Match form field borders */
             border: 1px solid #999;
         }
 
         input:focus,
         textarea:focus {
-            /* Additional highlight for focused elements */
             border-color: #000;
         }
 
         textarea {
-            /* Align multiline text fields with their labels */
             vertical-align: top;
-            /* Provide space to type some text */
             height: 5em;
         }
 
         .button {
-            /* Align buttons with the text fields */
-            padding-left: 90px; /* same size as the label elements */
+            padding-left: 90px;
         }
 
         button {
-            /* This extra margin represents roughly the same space as the space
-               between the labels and their text fields */
             margin-left: 0.5em;
         }
-
     </style>
 </head>
 <body>
@@ -90,29 +85,74 @@
         <p>This is the contact page. All required fields are marked with *.</p>
 
         <form id="contactForm" action="#" method="post">
-            <ul>
-                <li>
-                    <label for="name">Name: <span aria-label="required">*</span></label>
-                    <input type="text" id="name" name="user_name" />
-                </li>
-                <li>
-                    <label for="mail">Email: <span aria-label="required">*</span></label>
-                    <input type="email" id="mail" name="user_email" />
-                </li>
-                <li>
-                    <label for="msg">Message: <span aria-label="required">*</span></label>
-                    <textarea id="msg" name="user_message"></textarea>
-                </li>
-                <li class="button">
-                    <button type="submit">Send</button>
-                </li>
-            </ul>
+            <!-- Step 1: Ask for Name -->
+            <div class="form-step active">
+                <ul>
+                    <li>
+                        <label for="name">Name: <span aria-label="required">*</span></label>
+                        <input type="text" id="name" name="user_name" required />
+                    </li>
+                    <li class="button">
+                        <button type="button" onclick="nextStep()">Next</button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Step 2: Ask for Email -->
+            <div class="form-step">
+                <ul>
+                    <li>
+                        <label for="mail">Email: <span aria-label="required">*</span></label>
+                        <input type="email" id="mail" name="user_email" required />
+                    </li>
+                    <li class="button">
+                        <button type="button" onclick="nextStep()">Next</button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Step 3: Ask for Message -->
+            <div class="form-step">
+                <ul>
+                    <li>
+                        <label for="msg">Message: <span aria-label="required">*</span></label>
+                        <textarea id="msg" name="user_message" required></textarea>
+                    </li>
+                    <li class="button">
+                        <button type="submit">Send</button>
+                    </li>
+                </ul>
+            </div>
         </form>  
     </main>
     <footer>
         <p>&copy; 2024 NeighborNex. All rights reserved. </p>
         <button id="scrollToTopButton">Scroll to Top</button>
     </footer>
-    <script src="scripts.js"></script>
+    <script>
+        let currentStep = 0;
+        const formSteps = document.querySelectorAll('.form-step');
+
+        function nextStep() {
+            formSteps[currentStep].classList.remove('active');
+            currentStep++;
+            if (currentStep < formSteps.length) {
+                formSteps[currentStep].classList.add('active');
+            }
+        }
+
+        // Prevent advancing the form after submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            // Form will submit normally, and we stop further navigation
+            formSteps[currentStep].classList.add('active');
+            event.preventDefault();
+            alert("Form submitted successfully!"); // Optional: show a confirmation message
+
+            // Simulate form submission (replace with actual form submission if needed)
+            setTimeout(() => {
+                this.submit();
+            }, 1000); // Delay to allow for visual confirmation
+        });
+    </script>
 </body>
 </html>
